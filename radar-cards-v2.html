@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Galeria de Imagens</title>
+  <style>
+    #container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-container {
+      width: 300px;
+      height: 200px;
+      margin: 10px;
+      border: 1px solid #000;
+      position: relative;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .add-image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .add-image-container:hover {
+      background-color: lightgray;
+    }
+
+    .image-options {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="image-container">
+      <img src="https://via.placeholder.com/300x200" alt="Imagem 1">
+      <div class="image-options">
+        <button class="change-image">Alterar</button>
+        <button class="remove-image">Remover</button>
+      </div>
+    </div>
+    <div class="add-image-container">
+      <button class="add-image">+</button>
+    </div>
+  </div>
+
+  <script>
+    function addImage() {
+      var imageContainer = document.createElement("div");
+      imageContainer.classList.add("image-container");
+
+      var img = document.createElement("img");
+      img.src = "https://via.placeholder.com/300x200";
+      img.alt = "Imagem";
+
+      var imageOptions = document.createElement("div");
+      imageOptions.classList.add("image-options");
+
+      var changeButton = document.createElement("button");
+      changeButton.classList.add("change-image");
+      changeButton.textContent = "Alterar";
+
+      var removeButton = document.createElement("button");
+      removeButton.classList.add("remove-image");
+      removeButton.textContent = "Remover";
+
+      imageOptions.appendChild(changeButton);
+      imageOptions.appendChild(removeButton);
+
+      imageContainer.appendChild(img);
+      imageContainer.appendChild(imageOptions);
+
+      var container = document.getElementById("container");
+      container.appendChild(imageContainer);
+    }
+
+    function showInputBox() {
+      var url = prompt("Adicione uma URL de imagem de carta:");
+
+      if (url) {
+        var imageContainer = this.parentNode.parentNode;
+        var img = imageContainer.querySelector("img");
+        img.src = url;
+      }
+    }
+
+    function removeImage() {
+      var imageContainer = this.parentNode.parentNode;
+      var container = document.getElementById("container");
+      container.removeChild(imageContainer);
+    }
+
+    var addImageButton = document.querySelector(".add-image");
+    addImageButton.addEventListener("click", addImage);
+
+    var changeImageButtons = document.querySelectorAll(".change-image");
+    changeImageButtons.forEach(function (button) {
+      button.addEventListener("click", showInputBox);
+    });
+
+    var removeImageButtons = document.querySelectorAll(".remove-image");
+    removeImageButtons.forEach(function (button) {
+      button.addEventListener("click", removeImage);
+    });
+  </script>
+</body>
+</html>
