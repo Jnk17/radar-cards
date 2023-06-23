@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adicionar Imagem</title>
+  <style>
+    #imageContainer {
+      text-align: center;
+    }
+
+    #imageContainer img {
+      max-width: 300px;
+      max-height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Adicionar Imagem</h1>
+  
+  <div>
+    <label for="imageURL">URL da Imagem:</label>
+    <input type="text" id="imageURL">
+    <button onclick="addImage()">Adicionar</button>
+  </div>
+
+  <div id="imageContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
